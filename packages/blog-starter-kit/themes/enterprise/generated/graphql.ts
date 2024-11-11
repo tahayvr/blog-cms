@@ -2404,6 +2404,8 @@ export type GitHubActivityLog = Node & {
   deploymentType: DocsGitHubActivityDeploymentType;
   /** The deployment URL. For preview activities, the deployment URL is different for every commit. For production deployments, the deploymentUrl points to the main project subdomain. */
   deploymentUrl: Scalars['String']['output'];
+  /** The errors occurred during the sync. */
+  errors: Array<GitHubSyncError>;
   /** The commit ID. */
   gitCommitId: Scalars['String']['output'];
   /** The commit message. */
@@ -2415,6 +2417,27 @@ export type GitHubActivityLog = Node & {
   /** The status of the sync. */
   status: GitHubSyncStatus;
 };
+
+export type GitHubSyncError = {
+  __typename?: 'GitHubSyncError';
+  /** The error code denoting the reason of failure for GitHub sync. */
+  code: GitHubSyncErrorCode;
+  /** List of error messages */
+  messages: Array<Scalars['String']['output']>;
+};
+
+export enum GitHubSyncErrorCode {
+  /** Indicates that the project has configuration errors. */
+  ConfigurationError = 'CONFIGURATION_ERROR',
+  /** Indicates that the project has invalid content. */
+  ContentError = 'CONTENT_ERROR',
+  /** Indicates that the project has duplicate paths. */
+  DuplicatePaths = 'DUPLICATE_PATHS',
+  /** Indicates that the project has duplicate slugs. */
+  DuplicateSlugs = 'DUPLICATE_SLUGS',
+  /** Indicates that the project has missing files. */
+  MissingFiles = 'MISSING_FILES'
+}
 
 /** Contains the flag indicating if the GitHub sync feature is enabled or not. */
 export type GitHubSyncFeature = Feature & {

@@ -2375,6 +2375,8 @@ type GitHubActivityLog implements Node {
   The deployment URL. For preview activities, the deployment URL is different for every commit. For production deployments, the deploymentUrl points to the main project subdomain.
   """
   deploymentUrl: String!
+  """The errors occurred during the sync."""
+  errors: [GitHubSyncError!]!
   """The commit ID."""
   gitCommitId: String!
   """The commit message."""
@@ -2385,6 +2387,26 @@ type GitHubActivityLog implements Node {
   id: ID!
   """The status of the sync."""
   status: GitHubSyncStatus!
+}
+
+type GitHubSyncError {
+  """The error code denoting the reason of failure for GitHub sync."""
+  code: GitHubSyncErrorCode!
+  """List of error messages"""
+  messages: [String!]!
+}
+
+enum GitHubSyncErrorCode {
+  """Indicates that the project has configuration errors."""
+  CONFIGURATION_ERROR
+  """Indicates that the project has invalid content."""
+  CONTENT_ERROR
+  """Indicates that the project has duplicate paths."""
+  DUPLICATE_PATHS
+  """Indicates that the project has duplicate slugs."""
+  DUPLICATE_SLUGS
+  """Indicates that the project has missing files."""
+  MISSING_FILES
 }
 
 """
