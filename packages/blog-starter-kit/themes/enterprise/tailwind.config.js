@@ -12,37 +12,49 @@ module.exports = {
 				'accent-7': '#333',
 				success: '#0070f3',
 				cyan: '#79FFE1',
-				primary: colors.blue,
+				primary: {
+					50: '#f0f9ff', // Lightest shade
+					100: '#e0f2fe',
+					200: '#bae6fd',
+					300: '#7dd3fc',
+					400: '#38bdf8',
+					500: '#128146', // Main primary color
+					600: '#YOUR_DARKER_HEX', // Darker shade
+					700: '#0369a1',
+					800: '#075985',
+					900: '#0c4a6e', // Darkest shade
+					950: '#082f49',
+				},
 			},
 			typography: () => ({
 				DEFAULT: {
-				  css: {
-					'div[data-node-type="callout"]': {
-					  display: 'flex',
-					  'justify-content': 'flex-start',
-					  'align-items': 'flex-start',
-					  'background-color': '#F8FAFC',
-					  border: '1px solid #E2E8F0',
-					  padding: ' 1rem 1.5rem',
-					  gap: '0.5rem',
-					  'border-radius': '0.5rem',
-					  margin: '1rem 0',
-					  'word-break': 'break-word',
+					css: {
+						'div[data-node-type="callout"]': {
+							display: 'flex',
+							'justify-content': 'flex-start',
+							'align-items': 'flex-start',
+							'background-color': '#F8FAFC',
+							border: '1px solid #E2E8F0',
+							padding: ' 1rem 1.5rem',
+							gap: '0.5rem',
+							'border-radius': '0.5rem',
+							margin: '1rem 0',
+							'word-break': 'break-word',
+						},
+						'div[data-node-type="callout-emoji"]': {
+							background: '#E2E8F0',
+							'border-radius': '0.5rem',
+							minWidth: '1.75rem',
+							width: '1.75rem',
+							height: '1.5rem',
+							display: 'flex',
+							'margin-top': '0.3rem',
+							'justify-content': 'center',
+							'align-items': 'center',
+							'font-size': '1rem',
+						},
 					},
-					'div[data-node-type="callout-emoji"]': {
-					  background: '#E2E8F0',
-					  'border-radius': '0.5rem',
-					  minWidth: '1.75rem',
-					  width: '1.75rem',
-					  height: '1.5rem',
-					  display: 'flex',
-					  'margin-top': '0.3rem',
-					  'justify-content': 'center',
-					  'align-items': 'center',
-					  'font-size': '1rem',
-					}
-				  },
-				}
+				},
 			}),
 			spacing: {
 				28: '7rem',
