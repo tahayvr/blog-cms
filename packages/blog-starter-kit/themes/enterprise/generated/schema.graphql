@@ -1426,7 +1426,6 @@ type DocumentationGuide implements IGuide {
 union DocumentationGuideItem = DocumentationApiReference | DocumentationGuide
 
 enum DocumentationGuideItemStatus {
-  DELETED
   PUBLISHED
   UNPUBLISHED
 }
@@ -1745,8 +1744,12 @@ type DocumentationProjectIntegrations {
   hotjarSiteID: String
   """Intercom ID for integration with Intercom"""
   intercomID: String
+  """Koala Public Key for integration with Koala."""
+  koalaPublicKey: String
   """The meta tags associated with the documentation project."""
   metaTags: String
+  """MS Clarity ID for integration with Microsoft Clarity."""
+  msClarityID: String
 }
 
 input DocumentationProjectIntegrationsInput {
@@ -1755,7 +1758,9 @@ input DocumentationProjectIntegrationsInput {
   gaTrackingID: String
   hotjarSiteID: String
   intercomID: String
+  koalaPublicKey: String
   metaTags: String
+  msClarityID: String
 }
 
 """Contains the pending invite information."""
@@ -1771,6 +1776,8 @@ type DocumentationProjectInvite implements Node {
 }
 
 type DocumentationProjectLinks {
+  """Bluesky URL of the documentation project."""
+  bluesky: String
   """Daily.dev URL of the documentation project."""
   dailydev: String
   """GitHub URL of the documentation project."""
@@ -1794,6 +1801,7 @@ type DocumentationProjectLinks {
 }
 
 input DocumentationProjectLinksInput {
+  bluesky: String
   dailydev: String
   github: String
   githubRepository: String
@@ -3295,7 +3303,7 @@ type MyUser implements IUser & Node {
   """
   A list of beta features that the user has access to. Only available to the authenticated user.
   """
-  betaFeatures: [BetaFeature!]!
+  betaFeatures: [BetaFeature!]! @deprecated(reason: "Beta features are no longer supported. Will be removed after 15/12/2024")
   """
   The bio of the user. Visible in about me section of the user's profile.
   """
@@ -4426,10 +4434,14 @@ type PublicationIntegrations {
   gaTrackingID: String
   """Hotjar Site ID for integration with Hotjar."""
   hotjarSiteID: String
+  """Koala Public Key for integration with Koala."""
+  koalaPublicKey: String
   """Matomo Site ID for integration with Matomo Analytics."""
   matomoSiteID: String
   """Matomo URL for integration with Matomo Analytics."""
   matomoURL: String
+  """MS Clarity ID for integration with Microsoft Clarity."""
+  msClarityID: String
   """
   A flag indicating if the custom domain is enabled for integration with Plausible Analytics.
   """
@@ -4481,6 +4493,8 @@ enum PublicationLayout {
 
 """Contains the publication's social media links."""
 type PublicationLinks {
+  """Bluesky URL of the publication."""
+  bluesky: String
   """Daily.dev URL of the publication."""
   dailydev: String
   """Facebook URL of the publication."""
@@ -5457,6 +5471,8 @@ type SetDocumentationSidebarItemVisibilityPayload {
 
 """Available social media links."""
 type SocialMediaLinks {
+  """The user's Bluesky profile."""
+  bluesky: String
   """The user's Facebook profile."""
   facebook: String
   """The user's GitHub profile."""

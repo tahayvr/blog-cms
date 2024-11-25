@@ -1438,7 +1438,6 @@ export type DocumentationGuideRedirectedPublishedPageArgs = {
 export type DocumentationGuideItem = DocumentationApiReference | DocumentationGuide;
 
 export enum DocumentationGuideItemStatus {
-  Deleted = 'DELETED',
   Published = 'PUBLISHED',
   Unpublished = 'UNPUBLISHED'
 }
@@ -1783,8 +1782,12 @@ export type DocumentationProjectIntegrations = {
   hotjarSiteID?: Maybe<Scalars['String']['output']>;
   /** Intercom ID for integration with Intercom */
   intercomID?: Maybe<Scalars['String']['output']>;
+  /** Koala Public Key for integration with Koala. */
+  koalaPublicKey?: Maybe<Scalars['String']['output']>;
   /** The meta tags associated with the documentation project. */
   metaTags?: Maybe<Scalars['String']['output']>;
+  /** MS Clarity ID for integration with Microsoft Clarity. */
+  msClarityID?: Maybe<Scalars['String']['output']>;
 };
 
 export type DocumentationProjectIntegrationsInput = {
@@ -1793,7 +1796,9 @@ export type DocumentationProjectIntegrationsInput = {
   gaTrackingID?: InputMaybe<Scalars['String']['input']>;
   hotjarSiteID?: InputMaybe<Scalars['String']['input']>;
   intercomID?: InputMaybe<Scalars['String']['input']>;
+  koalaPublicKey?: InputMaybe<Scalars['String']['input']>;
   metaTags?: InputMaybe<Scalars['String']['input']>;
+  msClarityID?: InputMaybe<Scalars['String']['input']>;
 };
 
 /** Contains the pending invite information. */
@@ -1809,6 +1814,8 @@ export type DocumentationProjectInvite = Node & {
 
 export type DocumentationProjectLinks = {
   __typename?: 'DocumentationProjectLinks';
+  /** Bluesky URL of the documentation project. */
+  bluesky?: Maybe<Scalars['String']['output']>;
   /** Daily.dev URL of the documentation project. */
   dailydev?: Maybe<Scalars['String']['output']>;
   /** GitHub URL of the documentation project. */
@@ -1832,6 +1839,7 @@ export type DocumentationProjectLinks = {
 };
 
 export type DocumentationProjectLinksInput = {
+  bluesky?: InputMaybe<Scalars['String']['input']>;
   dailydev?: InputMaybe<Scalars['String']['input']>;
   github?: InputMaybe<Scalars['String']['input']>;
   githubRepository?: InputMaybe<Scalars['String']['input']>;
@@ -3773,7 +3781,10 @@ export type MyUser = IUser & Node & {
   availableFor?: Maybe<Scalars['String']['output']>;
   /** Returns a list of badges that the user has earned. Shown on blogs /badges page. Example - https://iamshadmirza.com/badges */
   badges: Array<Badge>;
-  /** A list of beta features that the user has access to. Only available to the authenticated user. */
+  /**
+   * A list of beta features that the user has access to. Only available to the authenticated user.
+   * @deprecated Beta features are no longer supported. Will be removed after 15/12/2024
+   */
   betaFeatures: Array<BetaFeature>;
   /** The bio of the user. Visible in about me section of the user's profile. */
   bio?: Maybe<Content>;
@@ -4947,10 +4958,14 @@ export type PublicationIntegrations = {
   gaTrackingID?: Maybe<Scalars['String']['output']>;
   /** Hotjar Site ID for integration with Hotjar. */
   hotjarSiteID?: Maybe<Scalars['String']['output']>;
+  /** Koala Public Key for integration with Koala. */
+  koalaPublicKey?: Maybe<Scalars['String']['output']>;
   /** Matomo Site ID for integration with Matomo Analytics. */
   matomoSiteID?: Maybe<Scalars['String']['output']>;
   /** Matomo URL for integration with Matomo Analytics. */
   matomoURL?: Maybe<Scalars['String']['output']>;
+  /** MS Clarity ID for integration with Microsoft Clarity. */
+  msClarityID?: Maybe<Scalars['String']['output']>;
   /** A flag indicating if the custom domain is enabled for integration with Plausible Analytics. */
   plausibleAnalyticsEnabled?: Maybe<Scalars['Boolean']['output']>;
   /** The share ID for the Hashnode-provided Umami analytics instance. */
@@ -5004,6 +5019,8 @@ export enum PublicationLayout {
 /** Contains the publication's social media links. */
 export type PublicationLinks = {
   __typename?: 'PublicationLinks';
+  /** Bluesky URL of the publication. */
+  bluesky?: Maybe<Scalars['String']['output']>;
   /** Daily.dev URL of the publication. */
   dailydev?: Maybe<Scalars['String']['output']>;
   /** Facebook URL of the publication. */
@@ -6032,6 +6049,8 @@ export type SetDocumentationSidebarItemVisibilityPayload = {
 /** Available social media links. */
 export type SocialMediaLinks = {
   __typename?: 'SocialMediaLinks';
+  /** The user's Bluesky profile. */
+  bluesky?: Maybe<Scalars['String']['output']>;
   /** The user's Facebook profile. */
   facebook?: Maybe<Scalars['String']['output']>;
   /** The user's GitHub profile. */
